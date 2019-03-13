@@ -207,13 +207,19 @@ previewButotn.click(function (e) {
       alert('totalSupply can\'t be blank')
   } else {
 
-  console.log(initialSupply);
-  //console.log(web3.eth.abi.encodeParameter(uint256, initialSupply));
-  console.log(tokenName);
-  console.log(decimalUnits);
-  console.log(tokenSymbol);
+    //console.log(initialSupply);
+    //console.log(tokenName);
+    //console.log(decimalUnits);
+    //console.log(tokenSymbol);
 
-  displayContract(fileName);
+    var contract = web3.eth.contract(abi);
+    var contractData = contract.new.getData(initialSupply, tokenName, decimalUnits, tokenSymbol, { data: '' });
+    $('.encodeabi').html(contractData)
+
+    //console.log(contractData);
+    //console.log(contractData);
+
+    displayContract(fileName);
 
   };
 
@@ -258,6 +264,7 @@ assetForm.submit(function (e) {
     } else {
         //disable all form input fields
         assetFormInput.prop("disabled", true);
+        $('#preview-btn').prop("disabled", false);
         statusText.innerHTML = 'Waiting for contract to be deployed...';
         console.log(abi);
         var standardtokenContract = web3.eth.contract(abi);

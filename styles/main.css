@@ -178,3 +178,15 @@
   margin-bottom: 10px;
   font-size: 15px;
 }
+
+.statusText {
+  text-align: center;
+}
+
+.encodeabi {
+  width: 100%;
+  margin-top: 10px;
+  background: #f0f0f0;
+  border-color: lightgray;
+  height: 150px;
+}

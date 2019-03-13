@@ -11,13 +11,16 @@
     <link rel="stylesheet" href="styles/main.css">
     <!--Link for Material Icon-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Popup Stylesheet-->
+    <link rel="stylesheet" href="assets/popbox/popbox.css">
 
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
 </head>
 <body>
-<div class="container-first">
+<div class="container-first popbox_main_content popbox_blur">
     <div class="row wrap-form animated fadeInDown">
         <div class="col-12 align-self-end" id="metamask-locked">
             <i class="material-icons metamask-span">lock</i>
@@ -71,7 +74,9 @@
 
                 </div>
                 <div class="form-group">
-                    <button align="center" class="submit-button btn btn-primary" id="submit-btn" type="submit">Submit
+                  <button align="center" class="submit-button btn btn-primary" id="preview-btn" type="button">Preview Token Contract
+                  </button>
+                    <button align="center" class="submit-button btn btn-primary" id="submit-btn" type="submit">Deploy Token Contract
                     </button>
                 </div>
             </form>
@@ -121,11 +126,33 @@
     </div>
 </div>
 
+<div data-popbox-id="mypopbox1" class="popbox popbox_blur">
+	  <div class="popbox_container">
+      <div class="contract_name">Displaying Contract: <span>StandardToken.sol</span></div>
+      <pre><code class="actionscript hljs php">...</code></pre>
+  </div>
+
+<style>
+  .popbox_container {
+    max-width: 70%;
+  }
+  .popbox_container pre {
+    height: 70vh;
+    overflow: scroll;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f4f4f4;
+    padding: 10px;
+  }
+</style>
 <!--Libs-->
 <!--CDN for jquery and popper.js and bootstrap-->
 <script src="assets/js/jquery-3.3.1.min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/popbox/popbox.js"></script>
+<script src="assets/js/highlight.min.js"></script>
+<script src="assets/js/highlightjs-line-numbers.min.js"></script>
 <!--Core-->
 <script src="scripts/app.js"></script>
 </body>

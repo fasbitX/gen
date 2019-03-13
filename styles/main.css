@@ -173,3 +173,8 @@
     margin-top: 0.2em;
     margin-left: 0.75rem;
 }
+
+.contract_name {
+  margin-bottom: 10px;
+  font-size: 15px;
+}

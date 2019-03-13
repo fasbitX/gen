@@ -8,6 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "abi-decoder": "^1.2.0",
+    "ethereumjs-abi": "^0.6.6",
     "http-webnode": "^1.0.1"
   },
   "repository": {
@@ -26,5 +28,8 @@
     "token",
     "asset",
     "web3js"
-  ]
+  ],
+  "dependencies": {
+    "highlightjs-line-numbers.js": "^2.6.0"
+  }
 }

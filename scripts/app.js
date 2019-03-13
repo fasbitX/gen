@@ -15,6 +15,7 @@ var isMainNetwork, isRopsten, isRinkeby, isMetaMaskLocked, address;
 var provider;
 var abi;
 var bytecode;
+var fileName;
 
 var noMetamask = $('#no-metamask');
 var accountAddress = $('#current-address');
@@ -24,6 +25,7 @@ var metamaskUnlocked = $('#metamask-unlocked');
 
 var assetForm = $('#asset-form');
 var assetFormInput = $('#asset-form :input');
+var previewButotn = $('#preview-btn');
 
 //hide all change able elements
 noMetamask.hide();
@@ -156,30 +158,82 @@ setInterval(function () {
 
 function setContract(){
 
-        console.log("yes it is doing");
+    console.log("yes it is doing");
 
     if((document.getElementById("burn").checked == false) && (document.getElementById("mint").checked == false)){
         console.log("This is Standard-Token");
         abi = StdToken_abi;
+        fileName = 'StandardToken.sol';
         bytecode = StdToken_bytecode;
     }
     else if((document.getElementById("burn").checked == true) && (document.getElementById("mint").checked == false)){
         console.log("This is Burnable-Standard-Token");
         abi = BStdToken_abi;
+        fileName = 'BurnableStandardToken.sol';
         bytecode = BStdToken_bytecode;
     }
     else if((document.getElementById("burn").checked == false) && (document.getElementById("mint").checked == true)){
         console.log("This is Mintable-Standard-Token");
         abi = MStdToken_abi;
+        fileName = 'MintableStandardToken.sol';
         bytecode = MStdToken_bytecode;
     }
     else if((document.getElementById("burn").checked == true) && (document.getElementById("mint").checked == true)){
         console.log("This is Burnable-Mintable-Standard-Token");
-         abi = BMStdToken_abi;
-         bytecode = BMStdToken_bytecode;
+        abi = BMStdToken_abi;
+        fileName = 'BurnableMintableStandardToken.sol';
+        bytecode = BMStdToken_bytecode;
     }
+    //console.log(fileName);
 }
 
+previewButotn.click(function (e) {
+  //prevent the form from actually submitting.
+  e.preventDefault();
+  setContract();
+
+  var initialSupply = $('#total-supply').val();
+  var tokenName = $('#name').val();
+  var decimalUnits = $('#decimals').val();
+  var tokenSymbol = $('#symbol').val();
+
+  if (tokenName === '') {
+      alert('name can\'t be blank')
+  } else if (tokenSymbol === '') {
+      alert('symbol can\'t be blank')
+  } else if (decimalUnits === '') {
+      alert('decimals can\'t be blank')
+  } else if (initialSupply === '') {
+      alert('totalSupply can\'t be blank')
+  } else {
+
+  console.log(initialSupply);
+  //console.log(web3.eth.abi.encodeParameter(uint256, initialSupply));
+  console.log(tokenName);
+  console.log(decimalUnits);
+  console.log(tokenSymbol);
+
+  displayContract(fileName);
+
+  };
+
+});
+
+displayContract = function(file){
+  $.ajax({
+    url: 'contracts/' + file,
+    success: function (data){
+      var popbox = new Popbox({
+        blur:true,
+      });
+      //console.log(data);
+      $('.popbox_container pre code').html(data);
+      $('.popbox_container .contract_name span').html(file);
+      popbox.open('mypopbox1');
+      hljs.initLineNumbersOnLoad();
+    }
+  });
+}
 
 //call function on form submit
 assetForm.submit(function (e) {
@@ -193,7 +247,6 @@ assetForm.submit(function (e) {
     var decimalUnits = $('#decimals').val();
     var tokenSymbol = $('#symbol').val();
 
-
     if (tokenName === '') {
         alert('name can\'t be blank')
     } else if (tokenSymbol === '') {
@@ -206,7 +259,9 @@ assetForm.submit(function (e) {
         //disable all form input fields
         assetFormInput.prop("disabled", true);
         statusText.innerHTML = 'Waiting for contract to be deployed...';
+        console.log(abi);
         var standardtokenContract = web3.eth.contract(abi);
+        console.log(standardtokenContract);
         var standardtoken = standardtokenContract.new(
             initialSupply,
             tokenName,

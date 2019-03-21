@@ -63,15 +63,18 @@
                     <a href="#asset-supply"><i id="info-supply" class="material-icons info">info</i></a>
                     <span class="error-msg" id="total-supply-error-msg"></span>
                 </div>
-                <div>
-                    <input type="checkbox" id="burn" name="Burnable">    Burnable
-                    <!--<a href="#asset-burn"><i id="info-burn" class="material-icons info">info</i></a>-->
-
+                <div class="form-group">
+                    <input type="text" class="form-control" id="total-supply" placeholder="Comments" required>
+                    <a href="#asset-supply"><i id="info-supply" class="material-icons info">info</i></a>
+                    <span class="error-msg" id="total-supply-error-msg"></span>
                 </div>
                 <div>
-                    <input type="checkbox" id="mint" name="Mintable"> Mineable
+                    <input type="checkbox" id="burn" name="Burnable">Burnable
+                    <!--<a href="#asset-burn"><i id="info-burn" class="material-icons info">info</i></a>-->
+                </div>
+                <div>
+                    <input type="checkbox" id="mint" name="Mintable">Mineable
                     <!--<a href="#asset-mint"><i id="info-mint" class="material-icons info">info</i></a>-->
-
                 </div>
                 <div class="form-group">
                   <button align="center" class="submit-button btn btn-primary" id="preview-btn" type="button">Preview Token Contract

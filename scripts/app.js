@@ -26,6 +26,7 @@ var metamaskUnlocked = $('#metamask-unlocked');
 var assetForm = $('#asset-form');
 var assetFormInput = $('#asset-form :input');
 var previewButotn = $('#preview-btn');
+var copyButton = $('#copycode-btn');
 
 //hide all change able elements
 noMetamask.hide();
@@ -187,6 +188,21 @@ function setContract(){
     //console.log(fileName);
 }
 
+copyButton.click(function (e) {
+  e.preventDefault();
+  setContract();
+  $.ajax({
+    url: 'contracts/' + fileName,
+    success: function (data){
+      var popbox = new Popbox({
+        blur:true,
+      });
+      //console.log(data);
+      copyStringToClipboard(data);
+    }
+  });
+});
+
 previewButotn.click(function (e) {
   //prevent the form from actually submitting.
   e.preventDefault();
@@ -317,6 +333,25 @@ assetForm.submit(function (e) {
             })
     }
 });
+
+function copyStringToClipboard (str) {
+   // Create new element
+   var el = document.createElement('textarea');
+   // Set value (string to be copied)
+   el.value = str;
+   // Set non-editable to avoid focus and move outside of view
+   el.setAttribute('readonly', '');
+   el.style = {position: 'absolute', left: '-9999px'};
+   document.body.appendChild(el);
+   // Select text inside element
+   el.select();
+   // Copy text to clipboard
+   document.execCommand('copy');
+   // Remove temporary element
+   document.body.removeChild(el);
+   // Notify user of success
+   alert('Code Copied');
+}
 
 function nthRoot(x, n) {
     if (x < 0 && n % 2 != 1) return NaN; // Not well defined

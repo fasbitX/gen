@@ -134,7 +134,10 @@
 
 <div data-popbox-id="mypopbox1" class="popbox popbox_blur">
 	  <div class="popbox_container">
-      <div class="contract_name">Displaying Contract: <span>StandardToken.sol</span></div>
+      <div class="contract_name flex_between">
+        <div>Displaying Contract: <span>StandardToken.sol</span></div>
+        <div><button id="copycode-btn">Copy Code</button></div>
+      </div>
       <pre><code class="actionscript hljs php">...</code></pre>
       <div>Contract Name: Token</div>
       <div>Compiler Version: v0.5.6+commit.b259423e</div>
@@ -157,6 +160,10 @@
     border-style: solid;
     border-color: #f4f4f4;
     padding: 10px;
+  }
+  .flex_between {
+    display: flex;
+    justify-content: space-between;
   }
 </style>
 <!--Libs-->

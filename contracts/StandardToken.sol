@@ -1,4 +1,4 @@
-pragma solidity ^0.5.5;
+pragma solidity ^0.5.6;
 
 
 
@@ -81,6 +81,7 @@ contract Token is ERC20Interface, Owned, SafeMath {
     string public symbol;
     string public  name;
     uint public decimals;
+    string public comments;
     uint private _totalSupply;
 
     mapping(address => uint) balances;
@@ -94,10 +95,12 @@ contract Token is ERC20Interface, Owned, SafeMath {
         uint256 initialSupply,
         string memory tokenName,
         uint8 decimalUnits,
-        string memory tokenSymbol
+        string memory tokenSymbol,
+        string memory tokenComments
     ) public {
         symbol = tokenSymbol;
         name = tokenName;
+        comments = tokenComments;
         decimals = decimalUnits;
         _totalSupply = initialSupply;
         _totalSupply = _totalSupply * 10 ** decimals;

@@ -69,15 +69,18 @@
                     <a href="#asset-supply"><i id="info-supply" class="material-icons info">info</i></a>
                     <span class="error-msg" id="total-supply-error-msg"></span>
                 </div>
-                <div>
-                    <input type="checkbox" id="burn" name="Burnable">    Burnable
-                    <!--<a href="#asset-burn"><i id="info-burn" class="material-icons info">info</i></a>-->
-
+                <div class="form-group">
+                    <input type="text" class="form-control" id="comments" placeholder="Comments" maxlength="140">
+                    <a href="#asset-comments"><i id="info-supply" class="material-icons info">info</i></a>
+                    <span class="error-msg" id="total-supply-error-msg"></span>
                 </div>
                 <div>
-                    <input type="checkbox" id="mint" name="Mintable"> Mineable
+                    <input type="checkbox" id="burn" name="Burnable">Burnable
+                    <!--<a href="#asset-burn"><i id="info-burn" class="material-icons info">info</i></a>-->
+                </div>
+                <div>
+                    <input type="checkbox" id="mint" name="Mintable">Mineable
                     <!--<a href="#asset-mint"><i id="info-mint" class="material-icons info">info</i></a>-->
-
                 </div>
                 <div class="form-group">
                   <button align="center" class="submit-button btn btn-primary" id="preview-btn" type="button">Preview Token Contract
@@ -122,6 +125,9 @@
                 <p class="info-main">A token is literally just a representation of value which can change owners.
                     A mineable coin, or mineable token, is a token which is created by computers solving hard mathematical
                     riddles or doing many guesses.</p></li>
+            <li class="list-group-item animated fadeInUp" id="asset-comments"> • <span
+                    class="info-heading">COMMENTS : </span>
+                <p class="info-main">Optional comments for the token, string stored in token contract as public data forever on the blockchain. Maximum length (140 characters)</p></li>
         </ul>
     </div>
 </div>
@@ -134,11 +140,14 @@
 
 <div data-popbox-id="mypopbox1" class="popbox popbox_blur">
 	  <div class="popbox_container">
-      <div class="contract_name">Displaying Contract: <span>StandardToken.sol</span></div>
+      <div class="contract_name flex_between">
+        <div>Displaying Contract: <span>StandardToken.sol</span></div>
+        <div><button id="copycode-btn">Copy Code</button></div>
+      </div>
       <pre><code class="actionscript hljs php">...</code></pre>
       <div>Contract Name: Token</div>
-      <div>Compiler Version: v0.4.24+commit.e67f0147</div>
-      <div>Optimization Enabled: No</div>
+      <div>Compiler Version: v0.5.6+commit.b259423e</div>
+      <div>Optimization Enabled: Yes</div>
       <div>Runs: 200</div>
       <br>
       <div>Constructor Arguments ABI-encoded</div>
@@ -158,6 +167,13 @@
     border-color: #f4f4f4;
     padding: 10px;
   }
+  .flex_between {
+    display: flex;
+    justify-content: space-between;
+  }
+  .flex_between button {
+    cursor: pointer;
+  }
 </style>
 <!--Libs-->
 <!--CDN for jquery and popper.js and bootstrap-->
@@ -171,3 +187,4 @@
 <script src="scripts/app.js"></script>
 </body>
 </html>
+

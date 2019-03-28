@@ -1,4 +1,4 @@
-pragma solidity ^0.5.6;
+pragma solidity ^0.5.7;
 
 
 
@@ -234,4 +234,5 @@ contract Token is ERC20Interface, Owned, SafeMath {
         emit Transfer(account, address(0), value);
     }
 }
+
 

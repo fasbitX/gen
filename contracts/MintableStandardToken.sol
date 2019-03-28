@@ -1,4 +1,4 @@
-pragma solidity ^0.5.6;
+pragma solidity ^0.5.7;
 
 // ----------------------------------------------------------------------------//
 // (Quantum Bit) is created by NASA contracting company Inov8ive Technologies and is
@@ -229,4 +229,5 @@ contract Token is ERC20Interface, Owned, SafeMath {
     }
 
 }
+
 
